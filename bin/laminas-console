@@ -24,10 +24,11 @@ $container = $laminasApp->getServiceManager();
 
 $app = new SymfonyConsoleApplication($config['console']['name'] ?? '');
 
-$commandLoader = new ContainerCommandLoader(
-	$container,
-	$config['console']['commands']
-);
+foreach ($config['console']['commands'] as $commandClass)
+{
+	$app->add(
+		$container->get($commandClass)
+	);
+}
 
-$app->setCommandLoader($commandLoader);
 $app->run();
