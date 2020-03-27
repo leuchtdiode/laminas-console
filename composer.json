@@ -1,0 +1,34 @@
+{
+	"name": "leuchtdiode/laminas-console",
+	"description": "Laminas module for console (using symfony/console)",
+	"type": "library",
+	"license": "MIT",
+	"homepage": "https://try2catch.com",
+	"authors": [
+		{
+			"name": "Alex Schloegl",
+			"email": "alex@try2catch.com",
+			"homepage": "https://try2catch.com",
+			"role": "Developer"
+		}
+	],
+	"keywords": [
+		"Laminas",
+		"Module",
+		"Console"
+	],
+	"bin": [
+		"bin/laminas-console"
+	],
+	"require": {
+		"php": ">=7.1",
+		"symfony/console": "^5.0",
+		"laminas/laminas-mvc": "^3.1",
+		"laminas/laminas-stdlib": "^3.2"
+	},
+	"autoload": {
+		"psr-4": {
+			"Console\\": "src/"
+		}
+	}
+}
