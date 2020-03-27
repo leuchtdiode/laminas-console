@@ -5,58 +5,9 @@ use Laminas\Stdlib\ArrayUtils;
 use Symfony\Component\Console\Application as SymfonyConsoleApplication;
 use Symfony\Component\Console\CommandLoader\ContainerCommandLoader;
 
-const POSSIBLE_AUTOLOAD_PATHS = [
-	__DIR__ . '/../../autoload.php',
-	__DIR__ . '/../vendor/autoload.php',
-	__DIR__ . '/vendor/autoload.php'
-];
+require __DIR__ . '/../../../autoload.php';
 
-const POSSIBLE_CONFIG_PATHS = [
-	__DIR__ . '/../../config',
-	__DIR__ . '/../config',
-	__DIR__ . '/config',
-];
-
-$autoloadFile = null;
-
-foreach (POSSIBLE_AUTOLOAD_PATHS as $autoloadPath)
-{
-	if (file_exists($autoloadPath))
-	{
-		$autoloadFile = $autoloadPath;
-		break;
-	}
-}
-
-if (!$autoloadFile)
-{
-	fwrite(
-		STDERR,
-		'You need to set up the project dependencies using Composer:' . PHP_EOL . PHP_EOL .
-		'    composer install' . PHP_EOL
-	);
-
-	die(1);
-}
-
-require_once $autoloadFile;
-
-$configPath = null;
-
-foreach (POSSIBLE_CONFIG_PATHS as $possibleConfigPath)
-{
-	if (file_exists($possibleConfigPath))
-	{
-		$configPath = $possibleConfigPath;
-		break;
-	}
-}
-
-if (!$configPath)
-{
-	fwrite(STDERR, 'Could not find config directory');
-	die(1);
-}
+$configPath = __DIR__ . '/../../../../config';
 
 $appConfig = require $configPath . '/application.config.php';
 
