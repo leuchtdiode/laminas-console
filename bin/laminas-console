@@ -5,15 +5,15 @@ use Laminas\Stdlib\ArrayUtils;
 use Symfony\Component\Console\Application as SymfonyConsoleApplication;
 use Symfony\Component\Console\CommandLoader\ContainerCommandLoader;
 
-require __DIR__ . '/../../../autoload.php';
+chdir(__DIR__ . '/../../../..');
 
-$configPath = __DIR__ . '/../../../../config';
+require 'vendor/autoload.php';
 
-$appConfig = require $configPath . '/application.config.php';
+$appConfig = require 'config/application.config.php';
 
-if (file_exists($configPath . '/development.config.php'))
+if (file_exists('config/development.config.php'))
 {
-	$appConfig = ArrayUtils::merge($appConfig, require $configPath . '/development.config.php');
+	$appConfig = ArrayUtils::merge($appConfig, require 'config/development.config.php');
 }
 
 $laminasApp = LaminasApplication::init($appConfig);
